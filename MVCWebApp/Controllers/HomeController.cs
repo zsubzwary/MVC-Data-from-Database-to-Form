@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCWebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,6 +25,23 @@ namespace MVCWebApp.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        
+        public ActionResult SignUp()
+        {
+            ViewBag.Message = "Student SignUp page.";
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SignUp(StudentModel student)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("index");
+            }
             return View();
         }
     }
