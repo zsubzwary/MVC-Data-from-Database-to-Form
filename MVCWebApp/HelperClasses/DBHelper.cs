@@ -25,5 +25,26 @@ namespace MVCWebApp.HelperClasses
             return noOfRowsEffected;
         }
 
+
+        public static String GetStudent(string emailAddress, string password)
+        {
+            String sql = $"SELECT * FROM Student WHERE emailAddress = '{emailAddress}' AND password = '{password}' ;";
+            SqlCommand cmd = new SqlCommand(sql, new SqlConnection(connectionString));
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.Connection.Open();
+            SqlDataReader sdr = cmd.ExecuteReader();
+
+            if (sdr.HasRows)
+            {
+                sdr.Read();
+                string nm = sdr["EmailAddress"].ToString();
+                sdr.Close();
+                return nm;
+            }
+
+            cmd.Connection.Close();
+            cmd.Dispose();
+            return null;
+        }
     }
 }
