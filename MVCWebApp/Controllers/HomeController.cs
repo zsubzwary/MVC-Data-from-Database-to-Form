@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MVCWebApp.HelperClasses;
 
 namespace MVCWebApp.Controllers
 {
@@ -40,6 +41,14 @@ namespace MVCWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                try
+                {
+                    DBHelper.insertIntoStudents(student);
+                }
+                catch (Exception ex)
+                {
+                    return RedirectToAction("error");
+                }
                 return RedirectToAction("index");
             }
             return View();
