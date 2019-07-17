@@ -17,22 +17,22 @@ namespace MVCWebApp.Models
         public String FirstName { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
-        [Display(Name = "Student ID")]
+        [Display(Name = "Last Name")]
         public String LastName { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
-        [Display(Name = "Student ID")]
+        [Display(Name = "Email Address")]
         [DataType(DataType.EmailAddress)]
         public String EmailAddress { get; set; }
 
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "This field is required")]
-        [Display(Name = "Student ID")]
+        [Display(Name = "Password")]
         public String Password { get; set; }
 
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "This field is required")]
-        [Display(Name = "Student ID")]
+        [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Both password should be same.")]
         public String ConfirmPassword { get; set; }
     }
