@@ -28,7 +28,7 @@ namespace MVCWebApp.Controllers
 
             return View();
         }
-        
+
         public ActionResult SignUp()
         {
             ViewBag.Message = "Student SignUp page.";
@@ -52,6 +52,32 @@ namespace MVCWebApp.Controllers
                 return RedirectToAction("index");
             }
             return View();
+        }
+
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(FormCollection collection)
+        {
+            string email = collection["EmailAddress"];
+            string password = collection["Password"];
+            string studentEmail = DBHelper.GetStudent(email, password);
+            if (String.IsNullOrWhiteSpace(studentEmail))
+            {
+                ViewBag.ShowErrorMsg = true;
+                ViewBag.ErrorMessage = "Your email OR password doesn’t exist!!";
+                Session.Remove("email");
+                return View();
+            }
+            else
+            {
+                Session["email"] = studentEmail;
+                return RedirectToAction("index");
+            }
         }
     }
 }
