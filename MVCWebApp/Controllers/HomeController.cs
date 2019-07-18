@@ -79,5 +79,11 @@ namespace MVCWebApp.Controllers
                 return RedirectToAction("index");
             }
         }
+
+        public ActionResult Logout()
+        {
+            Session.Remove("email");
+            return RedirectToAction("index");
+        }
     }
 }
